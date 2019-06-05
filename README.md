@@ -23,3 +23,5 @@
 PS：优劣势：
   CSSTransitionGroup的优势是非常明显的，简化代码提高性能
   劣势：不兼容较老的、不支持CSS3的浏览器，不支持为CSS属性之外的东西（比如滚动条位置或Canvas绘画）添加动画、可控粒度不够细，css3动画只支持start、end、ineration三个事件，不支持对中间状态进行处理、transitionEnd和animationEnd事件不稳定
+
+5、所有数据放到redux里，方便后续对数据的维护与管理

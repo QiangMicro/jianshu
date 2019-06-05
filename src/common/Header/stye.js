@@ -51,7 +51,7 @@ export const SeachWrap=styled.div`
     line-height:30px;
     border-radius:15px;
     text-align:center;
-    &.fouced{
+    &.focused{
       background:#6666;
     }
   }
@@ -74,7 +74,7 @@ export const NavSeach=styled.input.attrs({
   &::placeholder{
     color:#9999;
   }
-  &.fouced{
+  &.focused{
     width:280px;
   }
   &.slide-enter{
