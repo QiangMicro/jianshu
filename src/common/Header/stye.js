@@ -51,6 +51,9 @@ export const SeachWrap=styled.div`
     line-height:30px;
     border-radius:15px;
     text-align:center;
+    &.fouced{
+      background:#6666;
+    }
   }
 `
 
@@ -71,6 +74,22 @@ export const NavSeach=styled.input.attrs({
   &::placeholder{
     color:#9999;
   }
+  &.fouced{
+    width:280px;
+  }
+  &.slide-enter{
+    transition:all .2s ease-out;
+  }
+  &.slide-enter-active{
+    width:280px;
+  }
+  &.slide-exit{
+    transition:all .2s ease-out;
+  }
+  &.slide-exit-active{
+    width:160px;
+  }
+
 `
 
 export const Addtion=styled.div`
