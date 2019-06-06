@@ -1,9 +1,11 @@
-import React, { Component,Fragment } from 'react';
+import React, { Fragment } from 'react';
 // 使用connect将组件与store建立链接
 import {connect} from 'react-redux'
 import {
   HeaderWrapp,Logo,Nav,NavItem,SeachWrap,NavSeach,Addtion,Btn
 }from './stye.js'
+// 引入拆分的action
+import {actionCreators}  from './store'
 // 动画
 import {CSSTransition} from 'react-transition-group'
 
@@ -106,22 +108,16 @@ const Header=(props)=>{
 // }
 const mapStateToProps =(state)=>{
   return{
-    focused:state.focused
+    focused:state.header.get("focused")
   }
 }
 const mapDispathToProps =(disatch)=>{
   return{
     hadInputFocus(){
-      const action={
-        type:"had_Focus"
-      }
-      disatch(action)
+      disatch(actionCreators.seachFocus())
     },
     hadInputBlur(){
-      const action={
-        type:"had_Blur"
-      }
-      disatch(action)
+      disatch(actionCreators.seachBlur())
     }
   }
 }

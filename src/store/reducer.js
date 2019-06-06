@@ -1,18 +1,10 @@
-// 创建reducer
+// 使用combineReducers对reducer进行数据整合.好处：在使用combineReducer整合时目录会减少
 
-const defaultState={
-  focused:false,
-};
-export default (state=defaultState,action)=>{
-  if(action.type==="had_Focus"){
-    return{
-      focused:true,
-    }
-  };
-  if(action.type==="had_Blur"){
-    return{
-      focused:false,
-    }
-  }
-  return state;
-}
+import {combineReducers} from 'redux'
+import {reducer as headerReducer} from '../common/Header/store/index'
+
+const reducer=combineReducers({
+  header:headerReducer
+})
+
+export default reducer;
