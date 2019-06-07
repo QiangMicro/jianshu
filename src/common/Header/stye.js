@@ -56,6 +56,43 @@ export const SeachWrap=styled.div`
     }
   }
 `
+// 搜索框下的信息
+export const SearchInFo=styled.div`
+  position:absolute;
+  top:56px;
+  right:0;
+  padding:0 20px; 
+  width:280px;
+  /* 添加padding后避免原宽度增加 */
+  box-sizing:content-box;
+  overflow:hidden;
+  border-radius:2px;
+  box-shadow: 0 0 8px rgba(0,0,0,.2);
+`
+export const SearchInFoTitle=styled.div`
+  margin-top:20px;
+  margin-bottom:15px;
+  line-height:15px;
+  font-size: 14px;
+  color: #969696;
+`
+export const SearchInFoSwitch=styled.span`
+  float:right;
+  font-size: 13px;
+  color: #969696;
+`
+export const SearchInFoItem=styled.a`
+  display:block;
+  float:left;
+  font-size: 12px;
+  color: #787878;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 2px 6px;
+  margin-right:10px;
+  margin-bottom:10px;
+`
+
 
 export const NavSeach=styled.input.attrs({
   placeholder:'搜索'
