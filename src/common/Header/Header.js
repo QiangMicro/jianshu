@@ -17,37 +17,9 @@ import {CSSTransition} from 'react-transition-group'
 // import { objectExpression } from '@babel/types';
 
 class Header extends Component {
-  getList(){
-    // 使用结构赋值将代码简化
-    const {focused} =this.props
-    if(focused){
-      return (
-        <SearchInFo>
-          <SearchInFoTitle>
-            热门搜索
-            <SearchInFoSwitch>换一批</SearchInFoSwitch>
-          </SearchInFoTitle>
-          <div>
-            {
-              this.props.lis.map(item=>{
-                return  <SearchInFoItem key={item}>{item}</SearchInFoItem>
-              })
-            }
-            {/* <SearchInFoItem>区块链接</SearchInFoItem>
-            <SearchInFoItem>小程序</SearchInFoItem>
-            <SearchInFoItem>Vue</SearchInFoItem>
-            <SearchInFoItem>毕业</SearchInFoItem>
-            <SearchInFoItem>PHP</SearchInFoItem>
-            <SearchInFoItem>微信小程序+React</SearchInFoItem> */}
-          </div>
-        </SearchInFo>
-      )
-    }else{
-      return null
-    }
-  }
   render(){
-    const {focused,hadInputFocus,hadInputBlur} =this.props;
+    // immutable对象
+    const { focused,hadInputFocus,hadInputBlur} =this.props;
     return (
       <Fragment>
           <HeaderWrapp>
@@ -93,6 +65,43 @@ class Header extends Component {
           </HeaderWrapp>
       </Fragment>
     );
+  }
+    getList(){
+    // 使用结构赋值将代码简化
+    const {focused,page,lis} =this.props
+    const newLis=lis.toJS();
+    const pageList=[];
+    for(let i=(page-1)*10;i<page*10;i++){
+      pageList.push(
+        <SearchInFoItem key={newLis[i]}>{newLis[i]}</SearchInFoItem>
+      )      
+    }
+    if(focused){
+      return (
+        <SearchInFo>
+          <SearchInFoTitle>
+            热门搜索
+            <SearchInFoSwitch>换一批</SearchInFoSwitch>
+          </SearchInFoTitle>
+          <div>
+            {pageList}
+            {/* {
+              this.props.lis.map(item=>{
+                return  <SearchInFoItem key={item}>{item}</SearchInFoItem>
+              })
+            } */}
+            {/* <SearchInFoItem>区块链接</SearchInFoItem>
+            <SearchInFoItem>小程序</SearchInFoItem>
+            <SearchInFoItem>Vue</SearchInFoItem>
+            <SearchInFoItem>毕业</SearchInFoItem>
+            <SearchInFoItem>PHP</SearchInFoItem>
+            <SearchInFoItem>微信小程序+React</SearchInFoItem> */}
+          </div>
+        </SearchInFo>
+      )
+    }else{
+      return null
+    }
   }
 }
 // 通过函数将热门搜索显示与否
@@ -219,7 +228,8 @@ class Header extends Component {
 const mapStateToProps =(state)=>{
   return{
     focused:state.header.get("focused"),
-    lis:state.header.get("lis")
+    lis:state.header.get("lis"),
+    page:state.header.get('page'),
   }
 }
 const mapDispathToProps =(dispatch)=>{

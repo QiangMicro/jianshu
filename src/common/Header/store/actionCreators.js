@@ -15,6 +15,7 @@ export const seachBlur=()=>({
 const chageList=(data)=>({
   type:actionType.CHAGE_lIST,
   data:fromJS(data),
+  // 取整
   totalPage:Math.ceil(data.length/10)
 })
 

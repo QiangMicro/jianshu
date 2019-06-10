@@ -36,6 +36,8 @@
     fromJS将js转成immutable对象
     其中immutable.get()获取
     immutable.set()返回全新的值
+  
+  7、Math.ceil取整
 
 项目代码优化：
 
@@ -43,5 +45,6 @@
     2)代码结构中赋值：
     如：this.props.state = const {state} = this.props
     3)reducer函数中的if判断语句使用switch...case..defult语法
+    4)只发一次axios命令，
 
 
