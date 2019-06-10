@@ -14,10 +14,13 @@ import {
 import {actionCreators}  from './store'
 // 动画
 import {CSSTransition} from 'react-transition-group'
+// import { objectExpression } from '@babel/types';
 
 class Header extends Component {
-  getList(show){
-    if(show){
+  getList(){
+    // 使用结构赋值将代码简化
+    const {focused} =this.props
+    if(focused){
       return (
         <SearchInFo>
           <SearchInFoTitle>
@@ -25,12 +28,17 @@ class Header extends Component {
             <SearchInFoSwitch>换一批</SearchInFoSwitch>
           </SearchInFoTitle>
           <div>
-            <SearchInFoItem>区块链接</SearchInFoItem>
+            {
+              this.props.lis.map(item=>{
+                return  <SearchInFoItem key={item}>{item}</SearchInFoItem>
+              })
+            }
+            {/* <SearchInFoItem>区块链接</SearchInFoItem>
             <SearchInFoItem>小程序</SearchInFoItem>
             <SearchInFoItem>Vue</SearchInFoItem>
             <SearchInFoItem>毕业</SearchInFoItem>
             <SearchInFoItem>PHP</SearchInFoItem>
-            <SearchInFoItem>微信小程序+React</SearchInFoItem>
+            <SearchInFoItem>微信小程序+React</SearchInFoItem> */}
           </div>
         </SearchInFo>
       )
@@ -39,6 +47,7 @@ class Header extends Component {
     }
   }
   render(){
+    const {focused,hadInputFocus,hadInputBlur} =this.props;
     return (
       <Fragment>
           <HeaderWrapp>
@@ -55,22 +64,22 @@ class Header extends Component {
                 */}
               <CSSTransition 
               // 出入场动画
-                in={this.props.focused}
+                in={focused}
                 // 动画时长
                 timeout={200}
                 className='slide'
               >
                 <SeachWrap>
                   <NavSeach 
-                    className={this.props.focused ? 'focused' : ''}
-                    onFocus={this.props.hadInputFocus}
-                    onBlur={this.props.hadInputBlur}
+                    className={focused ? 'focused' : ''}
+                    onFocus={hadInputFocus}
+                    onBlur={hadInputBlur}
                   >
                   </NavSeach>                            
-                  <i  className={this.props.focused ? 'iconfont focused' : 'iconfont'}>
+                  <i  className={focused ? 'iconfont focused' : 'iconfont'}>
                     &#xe60f;
                   </i>
-                  {this.getList(this.props.focused)}
+                  {this.getList(focused)}
                 </SeachWrap>   
               </CSSTransition>            
             </Nav>
@@ -177,7 +186,7 @@ class Header extends Component {
 //                 */}
 //               <CSSTransition 
 //               // 出入场动画
-//                 in={this.props.focused}
+//                 in={focused}
 //                 // 动画时长
 //                 timeout={200}
 //                 className='slide'
@@ -209,7 +218,8 @@ class Header extends Component {
 // }
 const mapStateToProps =(state)=>{
   return{
-    focused:state.header.get("focused")
+    focused:state.header.get("focused"),
+    lis:state.header.get("lis")
   }
 }
 const mapDispathToProps =(dispatch)=>{

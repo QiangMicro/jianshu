@@ -1,32 +1,31 @@
-import * as actionCreators from './actionType'
+import * as actionType from './actionType'
 // 引入axios
 import axios from 'axios'
+import { fromJS } from 'immutable'
 
 // 创建action
 export const seachFocus=()=>({
-  type:actionCreators.HAD_FOCUS
+  type:actionType.HAD_FOCUS
 })
 export const seachBlur=()=>({
-  type:actionCreators.HAD_BLUR
+  type:actionType.HAD_BLUR
 })
-export const chageList=(data)=>({
-  type:actionCreators.CHAGE_lIST,
-  data
+
+// 将不需要导出的代码统一放到顶部或是底部
+const chageList=(data)=>({
+  type:actionType.CHAGE_lIST,
+  data:fromJS(data)
 })
 
 export const getList=()=>{
   return (dispatch)=>{
-      axios.get("/api/getList.json")
-        .then(
-          (res)=>{
-            const data=res.data;
-            dispatch(chageList.data.data)
-          }
-        )
-        .catch(
-          ()=>{
-            console.log("数据请求错误")
-          }
-        )
-    }
+    axios.get('api/getList.json')
+      .then((res)=>{
+        const data=res.data;
+        dispatch(chageList(data.data))
+      })
+      .catch(()=>{
+        console.log('数据请求错误')
+      })
+  }
 }
