@@ -6,7 +6,11 @@ import {fromJS} from 'immutable'
 // import { stat } from 'fs';
 const defaultState=fromJS({
     focused:false,
-    lis:[]
+    lis:[],
+    // 当前有多少页
+    page:1,
+    // 整体数据有多少页，初始值
+    totalPage:1
   });
   export default (state=defaultState,action)=>{
     switch(action.type){
@@ -15,7 +19,7 @@ const defaultState=fromJS({
       case actionType.HAD_BLUR :
         return state.set("focused",false);
       case actionType.CHAGE_lIST :
-        return state.set('lis',action.data);
+        return state.set('lis',action.data).set('totalPage',action.totalPage);
       default :
         return state;
 

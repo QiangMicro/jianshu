@@ -14,7 +14,8 @@ export const seachBlur=()=>({
 // 将不需要导出的代码统一放到顶部或是底部
 const chageList=(data)=>({
   type:actionType.CHAGE_lIST,
-  data:fromJS(data)
+  data:fromJS(data),
+  totalPage:Math.ceil(data.length/10)
 })
 
 export const getList=()=>{
