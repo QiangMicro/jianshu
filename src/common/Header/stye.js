@@ -70,6 +70,7 @@ export const SearchInFo=styled.div`
   overflow:hidden;
   border-radius:2px;
   box-shadow: 0 0 8px rgba(0,0,0,.2);
+  background:#ffffff;
 `
 export const SearchInFoTitle=styled.div`
   margin-top:20px;

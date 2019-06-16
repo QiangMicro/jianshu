@@ -2,9 +2,11 @@
 
 import {combineReducers} from 'redux'
 import {reducer as headerReducer} from '../common/Header/store/index'
+import {reducer as TopicReducer } from '../page/home/store'
 
 const reducer=combineReducers({
-  header:headerReducer
+  header:headerReducer,
+  Topic:TopicReducer
 })
 
 export default reducer;
