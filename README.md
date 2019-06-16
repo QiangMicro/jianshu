@@ -39,6 +39,15 @@
   
   7、Math.ceil取整
 
+
+问题总结：
+
+  1、Header组件中换一换在切换页面时出action引用出错
+  2、问题：SearchInFoItem出现空item
+     解决方法：在循环时做判断，当i有值时再push到数组，无值时忽略
+  3、z-index坑
+  
+
 项目代码优化：
 
     1)action创建中将不需要导出的内容放到代码顶部或最后

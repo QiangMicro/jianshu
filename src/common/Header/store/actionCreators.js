@@ -10,12 +10,23 @@ export const seachFocus=()=>({
 export const seachBlur=()=>({
   type:actionType.HAD_BLUR
 })
-
+export const mouseEnter=()=>({
+  type:actionType.MOUSEENTER
+})
+export const mouseLave =()=>({
+  type:actionType.MOUSELAVE
+})
+export const changePages =(page)=>{
+  return {
+    type:actionType.CHANGE_PAGE,
+    page:page
+  }
+}
 // 将不需要导出的代码统一放到顶部或是底部
 const chageList=(data)=>({
   type:actionType.CHAGE_lIST,
   data:fromJS(data),
-  // 取整
+  // 页面取整
   totalPage:Math.ceil(data.length/10)
 })
 

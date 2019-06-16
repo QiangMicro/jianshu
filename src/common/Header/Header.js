@@ -14,12 +14,13 @@ import {
 import {actionCreators}  from './store'
 // 动画
 import {CSSTransition} from 'react-transition-group'
+// import { changePage } from './store/actionCreators';
 // import { objectExpression } from '@babel/types';
 
 class Header extends Component {
   render(){
     // immutable对象
-    const { focused,hadInputFocus,hadInputBlur} =this.props;
+    const { focused,hadInputFocus,hadInputBlur } =this.props;
     return (
       <Fragment>
           <HeaderWrapp>
@@ -68,22 +69,31 @@ class Header extends Component {
   }
     getList(){
     // 使用结构赋值将代码简化
-    const {focused,page,lis} =this.props
+    const {focused,page,totalPage,mouseIn,lis,headChageEnter,headChageLave,hadChangePage} =this.props
     const newLis=lis.toJS();
     const pageList=[];
+
     for(let i=(page-1)*10;i<page*10;i++){
-      pageList.push(
-        <SearchInFoItem key={newLis[i]}>{newLis[i]}</SearchInFoItem>
-      )      
+      // newLis[i]判断是i是否有值，有值时再push,无值时忽略
+      if (newLis[i]) {
+        pageList.push(
+          <SearchInFoItem key={newLis[i]}>{newLis[i]}</SearchInFoItem>
+        ) 
+      }
+       
     }
-    if(focused){
+    if(focused || mouseIn ){
       return (
-        <SearchInFo>
-          <SearchInFoTitle>
+        <SearchInFo 
+          onMouseEnter={headChageEnter}
+          onMouseLeave={headChageLave}
+        >
+          <SearchInFoTitle >
             热门搜索
-            <SearchInFoSwitch>换一批</SearchInFoSwitch>
+            <SearchInFoSwitch onClick={()=> {hadChangePage(page,totalPage)} }>换一批</SearchInFoSwitch>
           </SearchInFoTitle>
           <div>
+            {/* 当前列表显示内容 */}
             {pageList}
             {/* {
               this.props.lis.map(item=>{
@@ -228,11 +238,13 @@ class Header extends Component {
 const mapStateToProps =(state)=>{
   return{
     focused:state.header.get("focused"),
+    mouseIn:state.header.get("mouseIn"),
     lis:state.header.get("lis"),
     page:state.header.get('page'),
+    totalPage:state.header.get('totalPage'),
   }
 }
-const mapDispathToProps =(dispatch)=>{
+const mapDispathToProps =(dispatch, getState)=>{
   return{
     hadInputFocus(){
       //异步请求
@@ -242,7 +254,20 @@ const mapDispathToProps =(dispatch)=>{
     },
     hadInputBlur(){
       dispatch(actionCreators.seachBlur())
-    }
+    },
+    headChageEnter(){
+      dispatch(actionCreators.mouseEnter())
+    },
+    headChageLave(){
+      dispatch(actionCreators.mouseLave())
+    },
+    hadChangePage(page,totalPage){
+      if(page < totalPage){
+        dispatch(actionCreators.changePages(page + 1))
+      }else{
+        dispatch(actionCreators.changePages(1))
+      } 
+    },
   }
 }
 

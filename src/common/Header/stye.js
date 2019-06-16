@@ -42,6 +42,7 @@ export const NavItem=styled.div`
 `
 export const SeachWrap=styled.div`
   position:relative;
+  z-index:99999;
   float:left;
   .iconfont{
     position:absolute;
@@ -56,9 +57,10 @@ export const SeachWrap=styled.div`
     }
   }
 `
-// 搜索框下的信息
+//面板信息
 export const SearchInFo=styled.div`
   position:absolute;
+  z-index:99999;
   top:56px;
   right:0;
   padding:0 20px; 
@@ -80,6 +82,7 @@ export const SearchInFoSwitch=styled.span`
   float:right;
   font-size: 13px;
   color: #969696;
+  cursor:pointer;
 `
 export const SearchInFoItem=styled.a`
   display:block;
