@@ -94,7 +94,7 @@ export const ListInfos=styled.div`
 `
 
 export const RecommendWrap =styled.div`
-  margin:30px 0;
+  margin:30px 0  15px 0;
   width:300px;
   overflow:hidden;
 `
@@ -137,6 +137,7 @@ export const WriterWrapp=styled.div`
   padding:10px;
 `
 export const WriterTitle=styled.div`
+  margin-bottom:30px;
   .left{
     display:block;
     float:left;
@@ -150,4 +151,51 @@ export const WriterTitle=styled.div`
     font-size: 14px;
     color: #969696;
   }
+`
+
+export const WriterMain=styled.div`
+  margin-bottom:30px;
+
+`
+export const MainLeft=styled.div`
+  float:left;
+  margin-right:-10px;
+  .pic{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+  }
+`
+export const LeftTitle=styled.div`
+  float:right;
+  margin-left:10px;
+  .title{
+    font-size: 14px;
+    line-height:30px;
+  }
+  .cont{
+    font-size: 12px;
+    color: #969696;
+    line-height:6px;
+  }
+`
+
+export const MainRight=styled.span`
+  display:block;
+  float:right;
+  font-size: 13px;
+  color: #42c02e;
+  line-height:30px;
+`
+export const WriterBtn=styled.button`
+  margin-top:30px;
+  width:260px;
+  padding: 7px 7px 7px 12px;
+  font-size: 13px;
+  color: #787878;
+  background-color: #f7f7f7;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  outline:none;
+  cursor: pointer;
 `
