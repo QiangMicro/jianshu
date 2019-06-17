@@ -21,7 +21,7 @@ class Home extends Component {
               alt="图片路径有问题" 
               title="简书" 
             />
-            <Topic />
+            {/* <Topic /> */}
             <List />
           </HomeLeft>
           <HomeRight>

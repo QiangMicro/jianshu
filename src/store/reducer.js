@@ -6,7 +6,7 @@ import {reducer as TopicReducer } from '../page/home/store'
 
 const reducer=combineReducers({
   header:headerReducer,
-  Topic:TopicReducer
+  home:TopicReducer,
 })
 
 export default reducer;

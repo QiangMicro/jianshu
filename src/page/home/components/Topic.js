@@ -16,6 +16,7 @@ class Topic extends Component {
                 <img 
                   className='topic'
                   src={item.get('imgUrl')}
+                  alt='图片路径出错'
                 />
                 {item.get('title')}
                 
@@ -28,6 +29,6 @@ class Topic extends Component {
   }
 }
 const mapState=(state)=>({
-  list:state.Topic.get('TopicList')
+  list:state.home.get('TopicList')
 })
 export default connect(mapState,null)(Topic);
