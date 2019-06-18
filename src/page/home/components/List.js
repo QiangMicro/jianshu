@@ -1,6 +1,6 @@
 import React,{Component,Fragment} from 'react'
 import {connect} from 'react-redux'
-import { ListWrapper,ListInfo,ListWrappers,ListInfos } from '../style'
+import { ListWrapper,ListInfo,ListWrappers,ListInfos,LoadMore } from '../style'
 
 class List extends Component{
   render(){
@@ -35,6 +35,7 @@ class List extends Component{
            
           })
         }
+        <LoadMore >阅读更多</LoadMore>
       </Fragment> 
     )
   }

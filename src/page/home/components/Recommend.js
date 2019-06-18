@@ -5,7 +5,7 @@ import {
 } from '../style'
 class Recommend extends Component {
   render(){
-    const {itemList,hadShow} =this.props;
+    const {itemList} =this.props;
     return (
       <Fragment>
         {

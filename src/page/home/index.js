@@ -1,5 +1,7 @@
 import React, { Component,Fragment } from 'react';
-import Topic from './components/Topic'
+import {connect} from 'react-redux'
+import axios from 'axios'
+// import Topic from './components/Topic'
 import List from './components/List'
 import Recommend from './components/Recommend'
 import Writer from './components/Writer'
@@ -9,6 +11,8 @@ import {
   HomeWrapper,HomeLeft,HomeRight
 } from './style'
  
+
+// ui组件
 class Home extends Component {
   render(){
     return (
@@ -33,5 +37,25 @@ class Home extends Component {
       </Fragment>
     )
   }
+
+  // 窗口组件
+  componentDidMount(){
+    axios.get('/api/home.json')
+        .then((res)=>{
+          const resDate=res.data.data;
+          const action={
+            type:'cheang_home',
+            ListDate:resDate.ListDate,
+            RecommendList:resDate.RecommendList,
+            WriterList:resDate.WriterList
+          }
+        this.props.dipatchDate(action)
+        })
+  }
 }
-export default Home;
+const mapDistpatch=(dispatch)=>({
+  dipatchDate(action){
+    dispatch(action)
+  }
+})
+export default connect(null,mapDistpatch)( Home );

@@ -199,3 +199,15 @@ export const WriterBtn=styled.button`
   outline:none;
   cursor: pointer;
 `
+
+export const LoadMore=styled.div`
+  margin-top:20px;
+  width:100%;
+  padding:10px;
+  border-radius: 10px;
+  background-color: #a5a5a5;
+  text-align:center;
+  font-size:15px;
+  color:#ffffff;
+  cursor: pointer;
+`
