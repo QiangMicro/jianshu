@@ -1,17 +1,18 @@
 import React,{Component,Fragment} from 'react'
 import {connect} from 'react-redux'
 import { ListWrapper,ListInfo,ListWrappers,ListInfos,LoadMore } from '../style'
+import {actionCreators} from '../store'
 
 class List extends Component{
   render(){
-    const { list} =this.props;
+    const { list,ReadMore } =this.props;
     return(
       <Fragment>
         {
-          list.map((item) =>{
+          list.map((item,index) =>{
             if(item.get('imgUrl')){
               return (
-                <ListWrapper key={item.get('id')}>
+                <ListWrapper key={index}>
                   <img className="ListPic" 
                       alt='图片路径出错' 
                       src={item.get('imgUrl')}
@@ -24,7 +25,7 @@ class List extends Component{
               )
             }else{
               return (
-                <ListWrappers key={item.get('id')}>
+                <ListWrappers key={index}>
                   <ListInfos>
                     <h2 className='title'>{item.get('title')}</h2>
                     <p className='conent'>{item.get('describe')}</p>
@@ -35,7 +36,8 @@ class List extends Component{
            
           })
         }
-        <LoadMore >阅读更多</LoadMore>
+        {/* 点击事件 */}
+        <LoadMore onClick={ReadMore} >阅读更多</LoadMore>
       </Fragment> 
     )
   }
@@ -43,4 +45,10 @@ class List extends Component{
 const mapState =(state) =>({
   list:state.home.get('ListDate')
 })
-export default connect(mapState,null)(List) ;
+// 异步请求，派发action
+const mapDistpatch= (dispatch) =>({
+  ReadMore(){
+    dispatch(actionCreators.getMoreList())
+  }
+})
+export default connect(mapState,mapDistpatch)(List) ;

@@ -1,14 +1,14 @@
 import React, { Component,Fragment } from 'react';
 import {connect} from 'react-redux'
-import axios from 'axios'
 // import Topic from './components/Topic'
 import List from './components/List'
 import Recommend from './components/Recommend'
 import Writer from './components/Writer'
+import { actionCreators} from './store'
 
 // 引用styled-components第三方模块库
 import {
-  HomeWrapper,HomeLeft,HomeRight
+  HomeWrapper,HomeLeft,HomeRight,BackTop
 } from './style'
  
 
@@ -33,29 +33,29 @@ class Home extends Component {
             <Writer />
           </HomeRight>
         </HomeWrapper>
-        
+        <BackTop onClick={()=>this.props.hadToTop()}>顶部</BackTop>
       </Fragment>
     )
   }
 
-  // 窗口组件
+  // Ui组件
   componentDidMount(){
-    axios.get('/api/home.json')
-        .then((res)=>{
-          const resDate=res.data.data;
-          const action={
-            type:'cheang_home',
-            ListDate:resDate.ListDate,
-            RecommendList:resDate.RecommendList,
-            WriterList:resDate.WriterList
-          }
-        this.props.dipatchDate(action)
-        })
+   this.props.dipatchDate()
   }
 }
+
+const mapState=(props)=>({
+  hadToTop(){
+    window.scrollTo(0,0)
+  }
+})
+
+// 容器组件用于逻辑判断
 const mapDistpatch=(dispatch)=>({
-  dipatchDate(action){
+  dipatchDate(){
+    // 异步操作使用thunk后放到action里管理
+    const action = actionCreators.getInfo();
     dispatch(action)
   }
 })
-export default connect(null,mapDistpatch)( Home );
+export default connect(mapState,mapDistpatch)( Home );

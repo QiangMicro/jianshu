@@ -9,16 +9,15 @@ class Recommend extends Component {
     return (
       <Fragment>
         {
-          itemList.map((item)=>{
+          itemList.map((item,index)=>{
             return (
-              <RecommendWrap  key={item.get('id')}  >
+              <RecommendWrap  key={index}  >
                 <RecommendItem  imgeUrl={item.get('imgeUrl')} />
               </RecommendWrap>
             )
           })
         }
         <Downlod>
-          <img />
           <DownlodRight>
             <img 
               className='pic'

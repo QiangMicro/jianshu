@@ -11,6 +11,7 @@ import store from './store'
 import Home from './page/home'
 import Detail from './page/detail'
 
+
 class App extends Component {
   render() {
     return (
@@ -26,6 +27,7 @@ class App extends Component {
               <Route path='/detail' exact component={Detail}></Route> 
             </div>
           </BrowserRouter>
+          
       </Provider>
     );
   }
