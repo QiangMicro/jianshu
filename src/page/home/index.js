@@ -33,6 +33,7 @@ class Home extends Component {
             <Writer />
           </HomeRight>
         </HomeWrapper>
+        {/* 回到顶部 */}
         <BackTop onClick={()=>this.props.hadToTop()}>顶部</BackTop>
       </Fragment>
     )
