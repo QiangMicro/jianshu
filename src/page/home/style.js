@@ -201,7 +201,7 @@ export const WriterBtn=styled.button`
 `
 
 export const LoadMore=styled.div`
-  margin-top:20px;
+  margin:30px 0;
   width:100%;
   padding:10px;
   border-radius: 10px;

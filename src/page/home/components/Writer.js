@@ -1,9 +1,9 @@
-import React,{Component,Fragment} from 'react'
+import React,{PureComponent,Fragment} from 'react'
 import {connect} from 'react-redux'
 import {
   WriterWrapp,WriterTitle,WriterMain,MainLeft,LeftTitle,MainRight,WriterBtn
 } from '../style'
-class Writer extends Component{
+class Writer extends PureComponent{
   render(){
     const {WriterLists} =this.props;
     return (

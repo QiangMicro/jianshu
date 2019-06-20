@@ -1,9 +1,10 @@
-import React,{Component,Fragment} from 'react'
+import React,{PureComponent,Fragment} from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import { ListWrapper,ListInfo,ListWrappers,ListInfos,LoadMore } from '../style'
 import {actionCreators} from '../store'
 
-class List extends Component{
+class List extends PureComponent{
   render(){
     const { list,ReadMore } =this.props;
     return(
@@ -12,16 +13,18 @@ class List extends Component{
           list.map((item,index) =>{
             if(item.get('imgUrl')){
               return (
-                <ListWrapper key={index}>
-                  <img className="ListPic" 
-                      alt='图片路径出错' 
-                      src={item.get('imgUrl')}
-                  />
-                  <ListInfo>
-                    <h2 className='title'>{item.get('title')}</h2>
-                    <p className='conent'>{item.get('describe')}</p>
-                  </ListInfo>
-                </ListWrapper>
+                <Link key={index} to='/detail' >
+                  <ListWrapper  >
+                    <img className="ListPic" 
+                        alt='图片路径出错' 
+                        src={item.get('imgUrl')}
+                    />
+                    <ListInfo>
+                      <h2 className='title'>{item.get('title')}</h2>
+                      <p className='conent'>{item.get('describe')}</p>
+                    </ListInfo>
+                  </ListWrapper>
+                </Link>
               )
             }else{
               return (

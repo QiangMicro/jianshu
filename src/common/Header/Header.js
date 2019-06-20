@@ -2,7 +2,7 @@
 // 无状态组件+容器组件  2019.6.6
 
 
-import React, { Fragment,Component } from 'react';
+import React, { Fragment,PureComponent } from 'react';
 // 使用connect将组件与store建立链接
 import {connect} from 'react-redux'
 import {
@@ -14,10 +14,8 @@ import {
 import {actionCreators}  from './store'
 // 动画
 import {CSSTransition} from 'react-transition-group'
-// import { changePage } from './store/actionCreators';
-// import { objectExpression } from '@babel/types';
 
-class Header extends Component {
+class Header extends PureComponent {
   render(){
     // immutable对象
     const { focused,hadInputFocus,hadInputBlur } =this.props;

@@ -7,7 +7,9 @@ const defaultState=fromJS({
   // TopicList:[],
   ListDate:[],
   RecommendList:[],
-  WriterList:[]
+  WriterList:[],
+  // 回到顶部是否显示
+  showScoll:false
 });
 export default (state=defaultState,action)=>{
   switch(action.type){
@@ -19,7 +21,8 @@ export default (state=defaultState,action)=>{
       })
       case actionType.GET_MORE_LIST :
         return state.set('ListDate',state.get('ListDate').concat(action.moreDate))
-
+      case actionType.CHANGE_SHOW :
+        return state.set('showScoll',action.show)
       default :
         return state;   
   }   

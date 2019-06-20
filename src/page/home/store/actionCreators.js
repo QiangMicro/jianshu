@@ -33,3 +33,15 @@ export const getMoreList=()=>{
       })
   }
 }
+
+// 创建回到顶部action
+export const changeScoll=(show)=>{
+  return(dispatch)=>{
+    const action ={
+      type:actionType.CHANGE_SHOW,
+      show
+    }
+    dispatch(action)
+  }
+ 
+}

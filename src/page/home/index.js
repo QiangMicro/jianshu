@@ -1,4 +1,4 @@
-import React, { Component,Fragment } from 'react';
+import React, { PureComponent,Fragment } from 'react';
 import {connect} from 'react-redux'
 // import Topic from './components/Topic'
 import List from './components/List'
@@ -13,7 +13,7 @@ import {
  
 
 // ui组件
-class Home extends Component {
+class Home extends PureComponent {
   render(){
     return (
       <Fragment>
@@ -33,8 +33,11 @@ class Home extends Component {
             <Writer />
           </HomeRight>
         </HomeWrapper>
-        {/* 回到顶部 */}
-        <BackTop onClick={()=>this.props.hadToTop()}>顶部</BackTop>
+        {/* 回到顶部,回到顶部是否显示其实是控制reducer里的showScoll的值是true或是fasle */}
+        {
+          this.props.showScoll ?<BackTop onClick={()=>this.props.hadToTop()}>顶部</BackTop> :null
+        }
+        
       </Fragment>
     )
   }
@@ -42,13 +45,20 @@ class Home extends Component {
   // Ui组件
   componentDidMount(){
    this.props.dipatchDate()
+  //  绑定一个事件监听window的scoll事件
+  this.bindEvents();
+  }
+  componentWillUnmount(){
+    window.removeEventListener('scroll',this.props.changeshowScoll)
+  }
+  bindEvents(){
+    window.addEventListener('scroll',this.props.changeshowScoll)
   }
 }
 
-const mapState=(props)=>({
-  hadToTop(){
-    window.scrollTo(0,0)
-  }
+const mapState=(state)=>({
+  
+  showScoll:state.home.get('showScoll')
 })
 
 // 容器组件用于逻辑判断
@@ -57,6 +67,20 @@ const mapDistpatch=(dispatch)=>({
     // 异步操作使用thunk后放到action里管理
     const action = actionCreators.getInfo();
     dispatch(action)
+  },
+  changeshowScoll(){
+    // 大于100时显示“顶部” 小于100时则不显示
+    if(document.documentElement.scrollTop>100){
+      // 改reducer值，通过创建action
+      const action =actionCreators.changeScoll(true);
+      dispatch(action)
+    }else{
+      const action =actionCreators.changeScoll(false);
+      dispatch(action)
+    }
+  },
+  hadToTop(){
+    window.scrollTo(0,0)
   }
 })
 export default connect(mapState,mapDistpatch)( Home );

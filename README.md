@@ -55,5 +55,4 @@
     如：this.props.state = const {state} = this.props
     3)reducer函数中的if判断语句使用switch...case..defult语法
     4)只发一次axios命令，
-
-
+    5)使用connect与store绑定后会造成state数据改变后，reducer函数全部更新，耗费性能，可以使用shouldComponentUpdate生命周期函数避免虚拟Dom的比对，提升性能；但是react自带了一个纯组件PureComponent,其底层其实是一个shouldComponentUpdate（注：使用PureComponent需要与immutable来管理数据）

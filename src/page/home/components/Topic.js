@@ -1,10 +1,10 @@
-import React,{Component,Fragment} from 'react'
+import React,{PureComponent,Fragment} from 'react'
 // 使用connect将组件与store建立链接
 import {connect} from 'react-redux'
 import {
   TopicWrapp,TopicItem
 } from '../style'
-class Topic extends Component {
+class Topic extends PureComponent {
   render(){
     const {list} =this.props
     return(
