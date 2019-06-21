@@ -14,11 +14,12 @@ import {
 import {actionCreators}  from './store'
 // 动画
 import {CSSTransition} from 'react-transition-group'
+import {Link} from 'react-router-dom'
 
 class Header extends PureComponent {
   render(){
     // immutable对象
-    const { focused,hadInputFocus,hadInputBlur } =this.props;
+    const { focused,hadInputFocus,hadInputBlur,login } =this.props;
     return (
       <Fragment>
           <HeaderWrapp>
@@ -29,7 +30,14 @@ class Header extends PureComponent {
               <NavItem className="right">
                 <i className="iconfont">&#xe636;</i>
               </NavItem>
-              <NavItem className="right">登录</NavItem>
+              {
+                login ? 
+                <NavItem className="right">退出</NavItem>
+                : <Link to='/login'><NavItem className="right">登录</NavItem></Link> 
+              }
+             
+
+              
                 {/*CSSTransition动画需要传两个值分别为出入场动画和动画时长，其中自带四个
                 类名分别为：slider-enter、slider-enter-active、slider-exit和slider-exit-active
                 */}
@@ -240,6 +248,7 @@ const mapStateToProps =(state)=>{
     lis:state.header.get("lis"),
     page:state.header.get('page'),
     totalPage:state.header.get('totalPage'),
+    login:state.login.get('login')
   }
 }
 const mapDispathToProps =(dispatch, getState)=>{

@@ -33,7 +33,7 @@ class Writer extends PureComponent{
               </WriterMain>
             ))
           }
-          <WriterBtn>查看全部 ></WriterBtn>
+          <WriterBtn>查看全部 ></WriterBtn>  
         </WriterWrapp>
       </Fragment>
     )

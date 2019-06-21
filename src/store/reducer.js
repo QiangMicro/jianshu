@@ -4,12 +4,15 @@ import {combineReducers} from 'redux'
 import {reducer as headerReducer} from '../common/Header/store/index'
 import {reducer as homeReducer } from '../page/home/store'
 import {reducer as detailReducer} from '../page/detail/store'
+import {reducer as LoginlReducer} from '../page/login/store'
+
 
 
 const reducer=combineReducers({
   header:headerReducer,
   home:homeReducer,
-  detail:detailReducer
+  detail:detailReducer,
+  login:LoginlReducer
 })
 
 export default reducer;

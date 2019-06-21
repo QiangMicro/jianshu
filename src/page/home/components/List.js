@@ -13,7 +13,7 @@ class List extends PureComponent{
           list.map((item,index) =>{
             if(item.get('imgUrl')){
               return (
-                <Link key={index} to='/detail' >
+                <Link key={index} to={'/detail/' + item.get('id')}>
                   <ListWrapper  >
                     <img className="ListPic" 
                         alt='图片路径出错' 
