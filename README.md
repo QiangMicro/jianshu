@@ -45,16 +45,28 @@
 问题总结：
 
   1、Header组件中换一换在切换页面时出action引用出错
+
   2、问题：SearchInFoItem出现空item
      解决方法：在循环时做判断，当i有值时再push到数组，无值时忽略
+
   3、z-index坑
+
+  4、登录页面与退出页面间的切换，是通过控抽login的布尔值来确定
   
 
 项目代码优化：
 
     1)action创建中将不需要导出的内容放到代码顶部或最后
+
     2)代码结构中赋值：
     如：this.props.state = const {state} = this.props
+
     3)reducer函数中的if判断语句使用switch...case..defult语法
+
     4)只发一次axios命令，
+
     5)使用connect与store绑定后会造成state数据改变后，reducer函数全部更新，耗费性能，可以使用shouldComponentUpdate生命周期函数避免虚拟Dom的比对，提升性能；但是react自带了一个纯组件PureComponent,其底层其实是一个shouldComponentUpdate（注：使用PureComponent需要与immutable来管理数据）
+
+项目总结：
+
+这个项目是React为技术栈仿写的简书APP，通过对此项目的开发已经熟悉了react流程，这些还远远不够，还需要从0开始构建一个完整的项目。redux这次使用的比较多但是还需要深入学习（这个项目是使用Create-react-app脚手架创建的）。前端开发基本完成，性能在开发时已同时做了优化，接下来需要进一步对相应功能进行开发。
